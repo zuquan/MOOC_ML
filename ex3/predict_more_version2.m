@@ -21,37 +21,20 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
-% Theta1 has size 25 x 401 
-% Theta2 has size 10 x 26
-
-% Add ones to the X data matrix; size(X) = [m, n+1] = [m, 401]
+% Add ones to the X data matrix; size(X) = [m, n+1]
 X = [ones(m, 1) X];
 
-% hidden activation % size(a2) = [m x 25]
-a2 = sigmoid(X * Theta1');
+% hidden activation % size(a2) = [25 x m]
+a2 = sigmoid(Theta1 * X');
 
 % Add ones
-a2 = [ones(m, 1) a2];
+a2 = [ones(1, m); a2];
 
-% output, size(h) = m x 10
-h = sigmoid(a2 * Theta2');
-
-
-
-% % Add ones to the X data matrix; size(X) = [m, n+1]
-% X = [ones(m, 1) X];
-
-% % hidden activation % size(a2) = [25 x m]
-% a2 = sigmoid(Theta1 * X');
-
-% % Add ones
-% a2 = [ones(1, m); a2];
-
-% % output, size(h) = 10 x m
-% h = sigmoid(Theta2 * a2);
+% output
+h = sigmoid(Theta2 * a2);
 
 % get the maximum and the corresponding index
-[z p] = max(h, [], 2);
+[z p] = max(h', [], 2);
 
 
 % =========================================================================
