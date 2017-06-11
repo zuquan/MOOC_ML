@@ -164,7 +164,7 @@ pause;
 %  lambda to see how the fit and learning curve change.
 %
 
-lambda = 0;
+lambda = 3;
 [theta] = trainLinearReg(X_poly, y, lambda);
 
 % Plot training data and fit
@@ -192,6 +192,7 @@ for i = 1:m
     fprintf('  \t%d\t\t%f\t%f\n', i, error_train(i), error_val(i));
 end
 
+
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
@@ -203,6 +204,11 @@ pause;
 
 [lambda_vec, error_train, error_val] = ...
     validationCurve(X_poly, y, X_poly_val, yval);
+
+lambda = 3;          
+tTheta = ones(size(X_poly,2), 1);
+[tTheta] = trainLinearReg(X_poly, y, lambda);
+error_test = linearRegCostFunction(X_poly_test, ytest, tTheta, 0)
 
 close all;
 plot(lambda_vec, error_train, lambda_vec, error_val);

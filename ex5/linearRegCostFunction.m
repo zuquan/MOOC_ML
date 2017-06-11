@@ -24,7 +24,6 @@ grad = zeros(size(theta));
 %               You should set J to the cost and grad to the gradient.
 %
 
-
 % another way to vertorization
 % J = sum((X*theta - y).^2) / (2*m);
 J = (X*theta - y)' * (X*theta - y) / (2*m);
@@ -35,17 +34,6 @@ J += sum(thetaR.^2) * lambda / (2*m);
 
 % gradient
 grad = (X' * (X*theta - y)) / m + [0; lambda * thetaR / m];
-
-
-
-
-
-
-
-
-
-
-
 
 
 % =========================================================================
